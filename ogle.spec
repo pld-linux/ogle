@@ -2,7 +2,7 @@ Summary:	DVD Player
 Summary(pl):	Program do odtwarzania filmów z DVD
 Name:		ogle
 Version:	0.8.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Multimedia
 Group(de):	X11/Applikationen/Multimedia
@@ -11,10 +11,10 @@ URL:		http://www.dtek.chalmers.se/~dvd/
 Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac.patch
 BuildRequires:	XFree86-devel
+BuildRequires:	a52dec-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libdvdread-devel
-BuildRequires:	a52dec-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libxml2-devel >= 2.4.5
 BuildRequires:	libtool
@@ -63,8 +63,7 @@ Statyczne biblioteki libaviplay.
 %patch0 -p1
 
 %build
-rm -f missing 
-rm -f acinclude.m4
+rm -f missing acinclude.m4
 libtoolize --copy --force
 aclocal
 autoconf
