@@ -1,0 +1,21 @@
+diff -uNr ogle-0.8.2.orig/ac3/a52_decoder.c ogle-0.8.2/ac3/a52_decoder.c
+--- ogle-0.8.2.orig/ac3/a52_decoder.c	Sun Dec  2 21:37:59 2001
++++ ogle-0.8.2/ac3/a52_decoder.c	Tue Apr 16 14:08:45 2002
+@@ -216,7 +216,7 @@
+ 
+   {
+     uint32_t accel;
+-    accel = MM_ACCEL_MLIB;
++    accel = MM_ACCEL_DJBFFT;
+ 
+     open_output(get_speaker_flags());
+ 
+@@ -746,7 +746,7 @@
+ 	if(disable_dynrng)
+ 	  a52_dynrng(&state, NULL, NULL);
+ 	for(i = 0; i < 6; i++) {
+-	  if(a52_block(&state, samples)) {
++	  if(a52_block(&state)) {
+ 	    DNOTE("a52_block() error\n");
+ 	    goto error;
+ 	  }
