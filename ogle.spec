@@ -1,18 +1,20 @@
 Summary:	DVD Player
 Summary(pl):	Program do odtwarzania filmów z DVD
 Name:		ogle
-Version:	0.7.1
+Version:	0.7.5
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
-Source0:	http://www.dtek.chalmers.se/groups/dvd/%{name}-%{version}.tar.gz
 URL:		http://www.dtek.chalmers.se/~dvd/
+Source0:	http://www.dtek.chalmers.se/groups/dvd/%{name}-%{version}.tar.gz
+Patch0:		%{name}-ac.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libdvdread-devel
+BuildRequires:	a52dec-devel
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,6 +58,7 @@ Statyczne biblioteki libaviplay.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 rm -f missing 
@@ -65,7 +68,8 @@ aclocal
 autoconf
 automake -a -c
 
-%configure 
+%configure \
+	--with-a52dec=/usr/X11R6
 
 %{__make}
 
@@ -79,8 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 if ! [ -f %{_libdir}/ogle/libdvdcontrol.la ] ; then
 	install ogle/.libs/libdvdcontrol.lai $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.la
 	install ogle/.libs/libdvdcontrol.a $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.a
-	install ogle/.libs/libdvdcontrol.so.1.0.0U $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so.1.0.0
-	ln -sf libdvdcontrol.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so 
+	install ogle/.libs/libdvdcontrol.so.3.0.0U $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so.3.0.0
+	ln -sf libdvdcontrol.so.3.0.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so 
 fi
 
 gzip -9nf README
