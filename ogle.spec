@@ -56,7 +56,7 @@ Statyczne biblioteki libaviplay.
 %setup -q
 
 %build
-rm -f missing acinclude.m4
+rm -f missing
 %{__libtoolize}
 aclocal
 %{__autoconf}
@@ -73,14 +73,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR="$RPM_BUILD_ROOT"
-
-# for some wired reason these are not installed by make install (unless ogle-devel is installed)
-if ! [ -f %{_libdir}/ogle/libdvdcontrol.la ] ; then
-       install ogle/.libs/libdvdcontrol.lai $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.la
-       install ogle/.libs/libdvdcontrol.a $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.a
-       install ogle/.libs/libdvdcontrol.so.3.2.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so.3.2.0
-       ln -sf libdvdcontrol.so.3.2.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so
-fi
 
 gzip -9nf README
 
