@@ -60,8 +60,8 @@ Statyczne biblioteki libaviplay.
 rm -f missing acinclude.m4
 libtoolize --copy --force
 aclocal
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure \
 	--disable-xmltest
 cp libtool libtool.ok
