@@ -57,12 +57,13 @@ Statyczne biblioteki libaviplay.
 %build
 cp -f /usr/share/automake/config.sub .
 rm -f missing
-#%{__libtoolize}
-#%{__aclocal}
-#%{__autoconf}
-#%{__automake}
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure \
 	--disable-xmltest
+sed -i -e "s,@XML_CFLAGS@,`xml2-config --cflags`,g" {ac3,dvd_cli,mpeg2_video,ogle,vmg}/Makefile
 cp libtool libtool.ok
 sed -e 's#AS="$(CC)"#AS="$CC"#g' libtool.ok > libtool
 chmod 755 libtool
