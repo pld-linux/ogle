@@ -83,8 +83,8 @@ rm -rf $RPM_BUILD_ROOT
 if ! [ -f %{_libdir}/ogle/libdvdcontrol.la ] ; then
        install ogle/.libs/libdvdcontrol.lai $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.la
        install ogle/.libs/libdvdcontrol.a $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.a
-       install ogle/.libs/libdvdcontrol.so.3.1.0* $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so.3.1.0
-       ln -sf libdvdcontrol.so.3.1.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so 
+       install ogle/.libs/libdvdcontrol.so.3.2.0* $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so.3.2.0
+       ln -sf libdvdcontrol.so.3.2.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so 
 fi
 
 gzip -9nf README
