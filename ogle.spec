@@ -1,14 +1,13 @@
 Summary:	DVD Player
 Summary(pl):	Program do odtwarzania filmów z DVD
 Name:		ogle
-Version:	0.7.0
+Version:	0.7.1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
 Source0:	http://www.dtek.chalmers.se/groups/dvd/%{name}-%{version}.tar.gz
-Patch0:		%{name}-am_fix.patch
 URL:		http://www.dtek.chalmers.se/groups/dvd/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -57,10 +56,10 @@ Statyczne biblioteki libaviplay.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
-rm -f missing
+rm -f missing 
+rm -f acinclude.m4
 libtoolize --copy --force
 aclocal
 autoconf
@@ -75,6 +74,12 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR="$RPM_BUILD_ROOT"
 
+# for some wired reason these are not installed by make install
+install ogle/.libs/libdvdcontrol.lai $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.la
+install ogle/.libs/libdvdcontrol.a $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.a
+install ogle/.libs/libdvdcontrol.so.1.0.0U $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so.1.0.0
+ln -sf libdvdcontrol.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so 
+
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
@@ -84,14 +89,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/ogle/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.la
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/ogle/lib*.la
+%attr(755,root,root) %{_libdir}/ogle/lib*.so
 %{_includedir}/%{name}
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/ogle/lib*.a
