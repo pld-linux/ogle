@@ -59,7 +59,7 @@ rm -f missing acinclude.m4
 libtoolize --copy --force
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 %configure \
 	--with-a52dec=%{_prefix}
 cp libtool libtool.ok
