@@ -25,7 +25,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 (the first) DVD player for Linux that supports DVD menus!
 
 %description -l pl
-(pierwszy) odtwarzacz DVD dla Linuxa obs³uguj±cy DVD menu!
+(pierwszy) odtwarzacz DVD dla Linuksa obs³uguj±cy DVD menu!
 
 %package devel
 Summary:	Header file required to build programs using libaviplay
