@@ -1,6 +1,19 @@
---- ogle-0.7.5/configure.in~	Thu Sep 20 04:30:27 2001
-+++ ogle-0.7.5/configure.in	Sat Oct  6 02:04:27 2001
-@@ -109,7 +109,7 @@
+diff -urN ogle-0.8.0.org/configure.in ogle-0.8.0/configure.in
+--- ogle-0.8.0.org/configure.in	Sun Oct 21 12:07:16 2001
++++ ogle-0.8.0/configure.in	Sun Oct 21 12:34:05 2001
+@@ -7,9 +7,10 @@
+ 
+ dnl Checks for programs.
+ AC_PROG_CC
++AM_PROG_AS
+ 
+ dnl AM_DISABLE_SHARED
+-AM_PROG_LIBTOOL
++AC_PROG_LIBTOOL
+ 
+ dnl Checks for typedefs, structures, and compiler characteristics.
+ AC_C_BIGENDIAN
+@@ -120,7 +121,7 @@
      [ AC_DEFINE([HAVE_CLOCK_GETTIME], 1, [ ])
        LIBS="$LIBS -lrt"
      ],
