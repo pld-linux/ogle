@@ -93,7 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/ogle/lib*.la
+%{_libdir}/ogle/lib*.la
 %attr(755,root,root) %{_libdir}/ogle/lib*.so
 %{_includedir}/%{name}
 
