@@ -1,23 +1,23 @@
 Summary:	DVD Player
 Summary(pl):	Program do odtwarzania filmów z DVD
 Name:		ogle
-Version:	0.9.1
+Version:	0.9.2
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 URL:		http://www.dtek.chalmers.se/~dvd/
-# Source0-md5:	8f10da2837a227af7a7190d7c63d4033
 Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
+# Source0-md5:	a76a9892bdb807a4bcf859d15a91f0f9
 BuildRequires:	XFree86-devel
 BuildRequires:	a52dec-libs-devel >= 0.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libdvdcss-devel >= 1.2.0
+BuildRequires:	libdvdcss-devel >= 1.2.2
 BuildRequires:	libdvdread-devel >= 0.9.4
 BuildRequires:	libjpeg-devel
 BuildRequires:	libxml2-devel >= 2.4.5
 BuildRequires:	libtool
-BuildRequires:	mad-devel
+BuildRequires:	libmad-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 
