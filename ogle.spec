@@ -9,7 +9,6 @@ Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
 URL:		http://www.dtek.chalmers.se/~dvd/
 Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
-Patch0:		%{name}-ac.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	a52dec-devel
 BuildRequires:	autoconf
@@ -60,7 +59,6 @@ Statyczne biblioteki libaviplay.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 rm -f missing acinclude.m4
