@@ -1,0 +1,11 @@
+--- ogle-0.7.5/configure.in~	Thu Sep 20 04:30:27 2001
++++ ogle-0.7.5/configure.in	Sat Oct  6 02:04:27 2001
+@@ -109,7 +109,7 @@
+     [ AC_DEFINE([HAVE_CLOCK_GETTIME], 1, [ ])
+       LIBS="$LIBS -lrt"
+     ],
+-    dnl AC_MSG_WARN(You need clock_gettime)
++    AC_MSG_WARN(You need clock_gettime)
+   )
+ )
+ 
