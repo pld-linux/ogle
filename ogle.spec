@@ -83,6 +83,8 @@ if ! [ -f %{_libdir}/ogle/libdvdcontrol.la ] ; then
 	ln -sf libdvdcontrol.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so 
 fi
 
+gzip -9nf README
+
 %post	-p "/sbin/ldconfig -n %{_libdir}/ogle"
 %postun	-p "/sbin/ldconfig -n %{_libdir}/ogle"
 
@@ -91,6 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc README*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/ogle/lib*.so.*.*
 
