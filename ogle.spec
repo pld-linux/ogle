@@ -10,7 +10,7 @@ Group(pl):	X11/Aplikacje/Multimedia
 URL:		http://www.dtek.chalmers.se/~dvd/
 Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
 BuildRequires:	XFree86-devel
-BuildRequires:	a52dec-devel
+BuildRequires:	a52dec-libs-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libdvdread-devel
