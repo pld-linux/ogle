@@ -64,7 +64,8 @@ libtoolize --copy --force
 aclocal
 autoconf
 automake -a -c
-%configure
+
+%configure 
 
 %{__make}
 
@@ -74,14 +75,16 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR="$RPM_BUILD_ROOT"
 
-# for some wired reason these are not installed by make install
-install ogle/.libs/libdvdcontrol.lai $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.la
-install ogle/.libs/libdvdcontrol.a $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.a
-install ogle/.libs/libdvdcontrol.so.1.0.0U $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so.1.0.0
-ln -sf libdvdcontrol.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so 
+# for some wired reason these are not installed by make install (unless ogle-devel is installed)
+if ! [ -f %{_libdir}/ogle/libdvdcontrol.la ] ; then
+	install ogle/.libs/libdvdcontrol.lai $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.la
+	install ogle/.libs/libdvdcontrol.a $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.a
+	install ogle/.libs/libdvdcontrol.so.1.0.0U $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so.1.0.0
+	ln -sf libdvdcontrol.so.1.0.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so 
+fi
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	-p "/sbin/ldconfig -n %{_libdir}/ogle"
+%postun	-p "/sbin/ldconfig -n %{_libdir}/ogle"
 
 %clean
 rm -rf $RPM_BUILD_ROOT
