@@ -20,7 +20,6 @@ BuildRequires:	libtool
 BuildRequires:	libmad-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-
 %description
 (the first) DVD player for Linux that supports DVD menus!
 
@@ -57,10 +56,10 @@ Statyczne biblioteki libaviplay.
 
 %build
 rm -f missing
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
+#%{__libtoolize}
+#%{__aclocal}
+#%{__autoconf}
+#%{__automake}
 %configure \
 	--disable-xmltest
 cp libtool libtool.ok
