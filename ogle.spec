@@ -1,20 +1,22 @@
 Summary:	DVD Player
 Summary(pl):	Program do odtwarzania filmów z DVD
 Name:		ogle
-Version:	0.7.5
+Version:	0.8.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
 Group(de):	X11/Applikationen/Multimedia
 Group(pl):	X11/Aplikacje/Multimedia
 URL:		http://www.dtek.chalmers.se/~dvd/
-Source0:	http://www.dtek.chalmers.se/groups/dvd/%{name}-%{version}.tar.gz
+Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
 Patch0:		%{name}-ac.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libdvdread-devel
 BuildRequires:	a52dec-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libxml2-devel >= 2.4.5
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -67,10 +69,11 @@ libtoolize --copy --force
 aclocal
 autoconf
 automake -a -c
-
 %configure \
-	--with-a52dec=/usr/X11R6
-
+	--with-a52dec=%{_prefix}
+cp libtool libtool.ok
+sed -e 's#AS="$(CC)"#AS="$CC"#g' libtool.ok > libtool
+chmod 755 libtool
 %{__make}
 
 %install
@@ -81,10 +84,10 @@ rm -rf $RPM_BUILD_ROOT
 
 # for some wired reason these are not installed by make install (unless ogle-devel is installed)
 if ! [ -f %{_libdir}/ogle/libdvdcontrol.la ] ; then
-	install ogle/.libs/libdvdcontrol.lai $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.la
-	install ogle/.libs/libdvdcontrol.a $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.a
-	install ogle/.libs/libdvdcontrol.so.3.0.0U $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so.3.0.0
-	ln -sf libdvdcontrol.so.3.0.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so 
+       install ogle/.libs/libdvdcontrol.lai $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.la
+       install ogle/.libs/libdvdcontrol.a $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.a
+       install ogle/.libs/libdvdcontrol.so.3.1.0* $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so.3.1.0
+       ln -sf libdvdcontrol.so.3.1.0 $RPM_BUILD_ROOT%{_libdir}/ogle/libdvdcontrol.so 
 fi
 
 gzip -9nf README
@@ -99,7 +102,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README*
 %attr(755,root,root) %{_bindir}/*
+%dir %{_libdir}/ogle
+%attr(755,root,root) %{_libdir}/ogle/ogle_*
 %attr(755,root,root) %{_libdir}/ogle/lib*.so.*.*
+%{_mandir}/man?/*
+%{_datadir}/ogle*
 
 %files devel
 %defattr(644,root,root,755)
