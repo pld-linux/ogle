@@ -19,8 +19,6 @@ BuildRequires:	libtool
 BuildRequires:	mad-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 (the first) DVD player for Linux that supports DVD menus!
