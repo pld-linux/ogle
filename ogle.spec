@@ -1,7 +1,7 @@
 Summary:	DVD Player
 Summary(pl):	Program do odtwarzania filmów z DVD
 Name:		ogle
-Version:	0.8.1
+Version:	0.8.2
 Release:	1
 License:	GPL
 Group:		X11/Applications/Multimedia
