@@ -12,6 +12,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	a52dec-libs-devel >= 0.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libdvdcss-devel >= 1.2.0
 BuildRequires:	libdvdread-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libxml2-devel >= 2.4.5
