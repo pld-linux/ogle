@@ -44,19 +44,19 @@
  	
  	flags = speaker_flags;
  	flags |= A52_ADJUST_LEVEL;
--	memset(&amp;state, 0, sizeof(a52_state_t));
+-	memset(&state, 0, sizeof(a52_state_t));
  	/* flags (speaker) [in/out] level [in/out] bias [in] */
--	if(a52_frame(&amp;state, buf, &amp;flags, &amp;level, bias)) {
-+	if(a52_frame(state, buf, &amp;flags, &amp;level, bias)) {
+-	if(a52_frame(&state, buf, &flags, &level, bias)) {
++	if(a52_frame(state, buf, &flags, &level, bias)) {
  	  DNOTE("a52_frame() error\n");
  	  goto error;
  	}
  
  	if(disable_dynrng)
--	  a52_dynrng(&amp;state, NULL, NULL);
+-	  a52_dynrng(&state, NULL, NULL);
 +	  a52_dynrng(state, NULL, NULL);
  	for(i = 0; i &lt; 6; i++) {
--	  if(a52_block(&amp;state, samples)) {
+-	  if(a52_block(&state, samples)) {
 +	  if(a52_block(state)) {
  	    DNOTE("a52_block() error\n");
  	    goto error;
