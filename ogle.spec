@@ -55,6 +55,7 @@ Statyczne biblioteki libaviplay.
 %setup -q
 
 %build
+cp -f /usr/share/automake/config.sub .
 rm -f missing
 #%{__libtoolize}
 #%{__aclocal}
