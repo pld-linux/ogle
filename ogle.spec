@@ -58,7 +58,7 @@ Statyczne biblioteki libaviplay.
 
 %build
 rm -f missing acinclude.m4
-libtoolize --copy --force
+%{__libtoolize}
 aclocal
 %{__autoconf}
 %{__automake}
