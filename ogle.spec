@@ -7,6 +7,7 @@ License:	GPL
 Group:		X11/Applications/Multimedia
 URL:		http://www.dtek.chalmers.se/~dvd/
 Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
+# Source0-md5:	fcf34f2e2880bf5e66016b4107e814d5
 BuildRequires:	XFree86-devel
 BuildRequires:	a52dec-libs-devel >= 0.7.3
 BuildRequires:	autoconf
