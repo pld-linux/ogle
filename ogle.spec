@@ -5,9 +5,9 @@ Version:	0.9.2
 Release:	3
 License:	GPL
 Group:		X11/Applications/Multimedia
-URL:		http://www.dtek.chalmers.se/~dvd/
 Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
 # Source0-md5:	a76a9892bdb807a4bcf859d15a91f0f9
+URL:		http://www.dtek.chalmers.se/~dvd/
 BuildRequires:	XFree86-devel
 BuildRequires:	a52dec-libs-devel >= 0.7.3
 BuildRequires:	autoconf
@@ -15,9 +15,10 @@ BuildRequires:	automake
 BuildRequires:	libdvdcss-devel >= 1.2.2
 BuildRequires:	libdvdread-devel >= 0.9.4
 BuildRequires:	libjpeg-devel
-BuildRequires:	libxml2-devel >= 2.4.5
-BuildRequires:	libtool
 BuildRequires:	libmad-devel
+BuildRequires:	libtool
+BuildRequires:	libxml2-devel >= 2.4.5
+BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
