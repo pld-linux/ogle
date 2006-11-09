@@ -1,0 +1,5 @@
+- Version: 0.7.1
+- libraries moved back to %{_libdir}/ogle/. These are private ogle libraries,
+  used only by ogle, they should not trash %{_libdir}
+- remove acinclude.m4 as this is a (broken) copy of libtool.m4 which is added by aclocal
+- hack to install libdvdcontrol library which is not installed by default (I don't know why)
