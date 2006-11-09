@@ -1,0 +1,2 @@
+- run ldconfig in %{_libdir}/ogle, where the libraries are
+- make it compile with and without ogle-devel
