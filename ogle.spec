@@ -31,7 +31,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Summary:	Header file required to build programs using libaviplay
 Summary(pl):	Pliki nag³ówkowe wymagane przez programy u¿ywaj±ce libaviplay
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files required to build programs using libaviplay.
@@ -44,7 +44,7 @@ libaviplay.
 Summary:	Static libaviplay libraries
 Summary(pl):	Statyczne biblioteki libaviplay
 Group:		X11/Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libaviplay libraries.
