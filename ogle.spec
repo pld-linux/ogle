@@ -1,5 +1,5 @@
 Summary:	DVD Player
-Summary(pl):	Program do odtwarzania film體 z DVD
+Summary(pl.UTF-8):   Program do odtwarzania film贸w z DVD
 Name:		ogle
 Version:	0.9.2
 Release:	3
@@ -24,32 +24,32 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 (the first) DVD player for Linux that supports DVD menus!
 
-%description -l pl
-(pierwszy) odtwarzacz DVD dla Linuksa obs硊guj眂y DVD menu!
+%description -l pl.UTF-8
+(pierwszy) odtwarzacz DVD dla Linuksa obs艂uguj膮cy DVD menu!
 
 %package devel
 Summary:	Header file required to build programs using libaviplay
-Summary(pl):	Pliki nag丑wkowe wymagane przez programy u縴waj眂e libaviplay
+Summary(pl.UTF-8):   Pliki nag艂贸wkowe wymagane przez programy u偶ywaj膮ce libaviplay
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files required to build programs using libaviplay.
 
-%description devel -l pl
-Pliki nag丑wkowe niezb阣ne do kompilacji program體 korzystaj眂ych z
+%description devel -l pl.UTF-8
+Pliki nag艂贸wkowe niezb臋dne do kompilacji program贸w korzystaj膮cych z
 libaviplay.
 
 %package static
 Summary:	Static libaviplay libraries
-Summary(pl):	Statyczne biblioteki libaviplay
+Summary(pl.UTF-8):   Statyczne biblioteki libaviplay
 Group:		X11/Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libaviplay libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczne biblioteki libaviplay.
 
 %prep
