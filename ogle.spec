@@ -2,13 +2,13 @@ Summary:	DVD Player
 Summary(pl.UTF-8):	Program do odtwarzania filmów z DVD
 Name:		ogle
 Version:	0.9.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
 # Source0-md5:	a76a9892bdb807a4bcf859d15a91f0f9
+Patch0:		%{name}-cvs-20070625.patch
 URL:		http://www.dtek.chalmers.se/~dvd/
-BuildRequires:	XFree86-devel
 BuildRequires:	a52dec-libs-devel >= 0.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -17,8 +17,18 @@ BuildRequires:	libdvdread-devel >= 0.9.4
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmad-devel
 BuildRequires:	libtool
+BuildRequires:	libxcb-devel
 BuildRequires:	libxml2-devel >= 2.4.5
-BuildRequires:	sed >= 4.0
+BuildRequires:	xorg-lib-libICE-devel
+BuildRequires:	xorg-lib-libSM-devel
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXau-devel
+BuildRequires:	xorg-lib-libXdmcp-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXinerama-devel
+BuildRequires:	xorg-lib-libXv-devel
+BuildRequires:	xorg-lib-libXxf86vm-devel
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -54,6 +64,7 @@ Statyczne biblioteki libaviplay.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
@@ -63,11 +74,8 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 %configure \
-	--disable-xmltest
-sed -i -e "s,@XML_CFLAGS@,`xml2-config --cflags`,g" {ac3,dvd_cli,mpeg2_video,ogle,vmg}/Makefile
-cp libtool libtool.ok
-sed -e 's#AS="$(CC)"#AS="$CC"#g' libtool.ok > libtool
-chmod 755 libtool
+	--with-libdir-suffix=%{_lib}
+
 %{__make}
 
 %install
