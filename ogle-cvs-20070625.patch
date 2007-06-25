@@ -2629,33 +2629,6 @@ diff -urN -x CVS -x .cvsignore ogle-0.9.2/configure.in ogle/configure.in
  sparc)
  	if test "x$GCC" = xyes; then
  	  O_CFLAGS="$O_CFLAGS -mcpu=ultrasparc -mvis"
-@@ -738,10 +833,25 @@
- powerpc|ppc)
- 	if test "x$GCC" = xyes; then
- 	  O_CFLAGS="$O_CFLAGS -fomit-frame-pointer -funroll-loops"
-+
-+dnl On MacOS X with Apple's gcc3.3, -mcpu=7400 and -faltivec is used.
-+dnl We assume that no other version of gcc is used in darwin
-+
- dnl is the right? needed? use just -m7400 ? need new gcc for that..
- dnl is there a -mcpu -march flag that we should use?
- dnl should be a try compile on this line.. 
--	  XCFLAGS="-Wa,-m7400"
-+
-+dnl What are correct options for altivec on other platforms/os/gcc versions?
-+	  case "$host_os" in
-+	  darwin*)
-+	  	XCFLAGS="-mcpu=7400 -faltivec -O3"
-+dnl Apples gcc3.3 only understands 'old' motorola-style altivec asm.
-+		USE_ALTIVEC_DARWIN=yes
-+		;;
-+	  *)
-+	  	XCFLAGS="-Wa,-m7400"
-+		;;
-+	  esac
- dnl that sets USE_ALTIVEC depending on the success
- 	  USE_ALTIVEC=yes
- 	fi
 @@ -775,6 +885,19 @@
    BUILD_MMX=1
    CFLAGS="$CFLAGS $XCFLAGS"
