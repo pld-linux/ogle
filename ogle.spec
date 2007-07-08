@@ -8,6 +8,7 @@ Group:		X11/Applications/Multimedia
 Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
 # Source0-md5:	a76a9892bdb807a4bcf859d15a91f0f9
 Patch0:		%{name}-cvs-20070625.patch
+Patch1:		%{name}-link.patch
 URL:		http://www.dtek.chalmers.se/~dvd/
 BuildRequires:	a52dec-libs-devel >= 0.7.3
 BuildRequires:	autoconf
@@ -17,13 +18,8 @@ BuildRequires:	libdvdread-devel >= 0.9.4
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmad-devel
 BuildRequires:	libtool
-BuildRequires:	libxcb-devel
 BuildRequires:	libxml2-devel >= 2.4.5
-BuildRequires:	xorg-lib-libICE-devel
-BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXau-devel
-BuildRequires:	xorg-lib-libXdmcp-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXinerama-devel
 BuildRequires:	xorg-lib-libXv-devel
@@ -42,6 +38,7 @@ Summary:	Header file required to build programs using libaviplay
 Summary(pl.UTF-8):	Pliki nagłówkowe wymagane przez programy używające libaviplay
 Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libxml2-devel >= 2.4.5
 
 %description devel
 Header files required to build programs using libaviplay.
@@ -65,10 +62,9 @@ Statyczne biblioteki libaviplay.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
-cp -f /usr/share/automake/config.sub .
-rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
@@ -84,28 +80,31 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR="$RPM_BUILD_ROOT"
 
-%post	-p "/sbin/ldconfig -n %{_libdir}/ogle"
-%postun	-p "/sbin/ldconfig -n %{_libdir}/ogle"
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
-%attr(755,root,root) %{_bindir}/*
+%doc AUTHORS README
+%attr(755,root,root) %{_bindir}/ifo_dump
+%attr(755,root,root) %{_bindir}/ogle
 %dir %{_libdir}/ogle
+%attr(755,root,root) %{_libdir}/ogle/libdvdcontrol.so.*
+%attr(755,root,root) %{_libdir}/ogle/libmsgevents.so.*
 %attr(755,root,root) %{_libdir}/ogle/ogle_*
-%attr(755,root,root) %{_libdir}/ogle/lib*.so.*.*
-%{_mandir}/man?/*
-%{_datadir}/ogle*
+%{_mandir}/man1/ogle.1*
+%{_mandir}/man5/oglerc.5*
+%{_datadir}/ogle
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/ogle/lib*.la
-%attr(755,root,root) %{_libdir}/ogle/lib*.so
+%attr(755,root,root) %{_libdir}/ogle/libdvdcontrol.so.*
+%attr(755,root,root) %{_libdir}/ogle/libmsgevents.so.*
+%{_libdir}/ogle/libdvdcontrol.la
+%{_libdir}/ogle/libmsgevents.la
 %{_includedir}/%{name}
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/ogle/lib*.a
+%{_libdir}/ogle/libdvdcontrol.a
+%{_libdir}/ogle/libmsgevents.a
