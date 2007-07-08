@@ -1,0 +1,33 @@
+--- ogle-0.9.2/mpeg2_video/Makefile.am.orig	2007-07-08 16:53:08.592149000 +0200
++++ ogle-0.9.2/mpeg2_video/Makefile.am	2007-07-08 17:12:01.366306145 +0200
+@@ -77,7 +77,7 @@
+ 	$(top_builddir)/common/libcommon.a \
+ 	$(top_builddir)/ogle/libmsgevents.la \
+ 	@MLIB_LIBS@ @JPEG_LIBS@ \
+-	@X_PRE_LIBS@ @X_LIBS@ -lX11 @X_EXTRA_LIBS@ @XEXT_LIB@ \
++	@X_LIBS@ -lX11 @X_EXTRA_LIBS@ @XEXT_LIB@ \
+ 	@XF86VIDMODE_LIBS@ @XML_LIBS@ \
+ 	@XINERAMA_LIBS@
+ 
+--- ogle-0.9.2/dvd_cli/Makefile.am.orig	2007-07-08 16:53:08.585482000 +0200
++++ ogle-0.9.2/dvd_cli/Makefile.am	2007-07-08 17:11:36.378382349 +0200
+@@ -26,5 +26,5 @@
+ 	interpret_config.c interpret_config.h
+ 
+ ogle_cli_LDADD = $(top_builddir)/ogle/libdvdcontrol.la \
+-	@X_PRE_LIBS@ @X_LIBS@ -lX11 @X_EXTRA_LIBS@ \
++	@X_LIBS@ -lX11 @X_EXTRA_LIBS@ \
+ 	@XML_LIBS@
+--- ogle-0.9.2/configure.in.orig	2007-07-08 16:53:08.585482000 +0200
++++ ogle-0.9.2/configure.in	2007-07-08 17:11:20.870935502 +0200
+@@ -691,8 +691,8 @@
+ dnl end Xinerama
+ dnl ---------------------------------------------------------
+ 
+-AC_CHECK_LIB(nsl, socket)
+-AC_CHECK_LIB(socket, socket)
++AC_SEARCH_LIBS(socket, nsl)
++AC_SEARCH_LIBS(socket, socket)
+ 
+ 
+ 
