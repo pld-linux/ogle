@@ -2,19 +2,20 @@ Summary:	DVD Player
 Summary(pl.UTF-8):	Program do odtwarzania filmów z DVD
 Name:		ogle
 Version:	0.9.2
-Release:	6
+Release:	7
 License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
 # Source0-md5:	a76a9892bdb807a4bcf859d15a91f0f9
 Patch0:		%{name}-cvs-20070625.patch
 Patch1:		%{name}-link.patch
+Patch2:		%{name}-libdvdread4.patch
 URL:		http://www.dtek.chalmers.se/~dvd/
 BuildRequires:	a52dec-libs-devel >= 0.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libdvdcss-devel >= 1.2.2
-BuildRequires:	libdvdread-devel >= 0.9.4
+BuildRequires:	libdvdread-devel >= 4.1.3
 BuildRequires:	libjpeg-devel
 BuildRequires:	libmad-devel
 BuildRequires:	libtool
@@ -63,6 +64,7 @@ Statyczne biblioteki libaviplay.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -98,8 +100,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/ogle/libdvdcontrol.so.*
-%attr(755,root,root) %{_libdir}/ogle/libmsgevents.so.*
+%attr(755,root,root) %{_libdir}/ogle/libdvdcontrol.so
+%attr(755,root,root) %{_libdir}/ogle/libmsgevents.so
 %{_libdir}/ogle/libdvdcontrol.la
 %{_libdir}/ogle/libmsgevents.la
 %{_includedir}/%{name}
