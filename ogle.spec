@@ -11,6 +11,7 @@ Patch0:		%{name}-cvs-20070625.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-libdvdread4.patch
 URL:		http://www.dtek.chalmers.se/~dvd/
+BuildRequires:	XFree86-devel
 BuildRequires:	a52dec-libs-devel >= 0.7.3
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -20,11 +21,6 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libmad-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.5
-BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXext-devel
-BuildRequires:	xorg-lib-libXinerama-devel
-BuildRequires:	xorg-lib-libXv-devel
-BuildRequires:	xorg-lib-libXxf86vm-devel
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
