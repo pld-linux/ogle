@@ -1,0 +1,11 @@
+--- ogle-0.9.2/vmg/vmcmd.c~	2003-05-29 23:09:47.000000000 +0200
++++ ogle-0.9.2/vmg/vmcmd.c	2014-01-03 15:55:04.298452688 +0100
+@@ -134,7 +134,7 @@
+ 
+ static void print_system_reg(uint16_t reg) {
+   if(reg < sizeof(system_reg_abbr_table) / sizeof(char *))
+-    fprintf(stderr, system_reg_table[reg]);
++    fprintf(stderr, "%s", system_reg_table[reg]);
+   else
+     fprintf(stderr, " WARNING: Unknown system register ");
+ }
