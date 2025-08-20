@@ -7,6 +7,7 @@ License:	GPL
 Group:		X11/Applications/Multimedia
 Source0:	http://www.dtek.chalmers.se/groups/dvd/dist/%{name}-%{version}.tar.gz
 # Source0-md5:	a76a9892bdb807a4bcf859d15a91f0f9
+Source1:	old-xml-macro.m4
 Patch0:		%{name}-cvs-20070625.patch
 Patch1:		%{name}-link.patch
 Patch2:		%{name}-libdvdread4.patch
@@ -70,9 +71,12 @@ Statyczne biblioteki libaviplay.
 %patch -P3 -p1
 %patch -P4 -p1
 
+install -d m4
+cp -p %{SOURCE1} m4/
+
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
 %configure \
